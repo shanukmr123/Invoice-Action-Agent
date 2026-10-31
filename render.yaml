@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: invoice-action-agent
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    disk:
+      name: invoice-agent-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: APP_BASE_URL
+        value: https://YOUR-RENDER-SERVICE.onrender.com/a2a
